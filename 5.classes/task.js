@@ -103,22 +103,22 @@ class Student {
     this.name = name;
     this.marks = {};
   }
-  
+
   addMark(mark, subject) {
     if (mark < 2 || mark > 5) {
       return;
      }
-    if (Object.keys(this.marks).length != 0) {
+    //if (Object.keys(this.marks).length != 0) {
       if (this.marks.hasOwnProperty(subject)) {
         this.marks[subject].push(mark);
       } else {
         this.marks[subject] = [];
         this.marks[subject].push(mark);
       }
-    } else {
-        this.marks[subject] = [];
-        this.marks[subject].push(mark);
-    }
+    //} else {
+        //this.marks[subject] = [];
+        //this.marks[subject].push(mark);
+    //}
   }
 
   getAverageBySubject(subject) {
