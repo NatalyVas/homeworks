@@ -7,13 +7,10 @@ class AlarmClock {
   addClock(time, callback) {
     if (time === null || callback === undefined) {
       throw new Error("Отсутствуют обязательные аргументы");
-    }
-    for(let item of this.alarmCollection) {
-      if (item.hasOwnProperty(`time`) && item.time === time) {
-        console.warn(`Уже присутствует звонок на это же время`);
-        return;
-      }
     } 
+    if (this.alarmCollection.some(item => item.time === time)) {
+      console.warn(`Уже присутствует звонок на это же время`);
+    }
     this.alarmCollection.push({callback: callback, time: time, canCall: true});
   }
 
@@ -22,9 +19,11 @@ class AlarmClock {
  } 
 
   getCurrentFormattedTime() {
-    let now = new Date();
-    let time = `${now.getHours()}:${now.getMinutes()}`;
-    return time;
+    let now = new Date().toLocaleTimeString("ru-Ru", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    return now;
   } 
 
   start() {
