@@ -39,7 +39,6 @@ function debounceDecoratorNew(func, delay) {
     }
     console.log("создаем новый таймаут");
     timeoutId = setTimeout(() => {
-      timeoutId = null;
       console.log(func(...args));
       wrapper.count += 1;
       console.log("вызвали колбэк");
